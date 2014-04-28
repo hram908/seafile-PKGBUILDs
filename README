@@ -1,0 +1,5 @@
+Small repo containing seafile PKGBUILDs for arkOS.
+See https://bbs.arkos.io/t/seafile-instead-of-owncloud/303
+
+PKGBUILDS taken from Arch Linux AUR
+https://aur.archlinux.org/packages/seafile-server/
