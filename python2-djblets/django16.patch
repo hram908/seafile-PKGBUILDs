@@ -1,0 +1,21 @@
+--- Djblets-0.7.15/contrib/internal/build-media.py.old	2014-04-29 15:06:23.642451737 +0000
++++ Djblets-0.7.15/contrib/internal/build-media.py	2014-04-29 15:28:48.974500340 +0000
+@@ -3,7 +3,7 @@
+ import os
+ import sys
+ 
+-from django.core.management import call_command, setup_environ
++from django.core.management import call_command
+ 
+ 
+ if __name__ == '__main__':
+@@ -12,8 +12,7 @@
+ 
+     os.putenv('FORCE_BUILD_MEDIA', '1')
+ 
+-    import djblets.settings
+-    setup_environ(djblets.settings)
++    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djblets.settings')
+ 
+     ret = call_command('collectstatic', interactive=False, verbosity=2)
+     sys.exit(ret)

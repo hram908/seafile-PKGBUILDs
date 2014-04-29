@@ -1,22 +1,27 @@
 # Maintainer: Aaron Lindsay <aaron@aclindsay.com>
 
 pkgname=python2-djblets
-pkgver=0.6.31
-pkgrel=2
+pkgver=0.7.29
+_pkgver=0.7
+pkgrel=1
 pkgdesc="A collection of useful extensions for Django."
 license=('MIT')
-arch=('i686' 'x86_64' 'armv7h' 'armv6h')
+arch=('any')
 url="https://github.com/djblets/djblets"
 depends=('python2')
-makedepends=('python2-distribute')
+makedepends=('python2-distribute' 'python2-django')
 provides=("python-djblets=$pkgver" "djblets=$pkgver")
 conflicts=('python-djblets' 'djblets')
 replaces=('python-djblets' 'djblets')
-source=(https://github.com/djblets/djblets/tarball/release-$pkgver)
-sha256sums=('bec94de071a5399f360b8888a8be41a99920acdcdd7106fea2cc699fe2473486')
+source=(http://downloads.reviewboard.org/releases/Djblets/${_pkgver}/Djblets-${pkgver}.tar.gz django16.patch)
+md5sums=('17080fc3d614f75fa2f95a19a3c025c3'
+         '228fcbb3b4bed602d005d7cc0c6ebcde')
+sha256sums=('6fc2e80650caa14891aaa4d39e0d564ba707d4505ee7d56a0049cb92c5339272'
+            '364a6a64958fb1a853dfb69123956027d37d3c0edfb1713a5305d2ecda1ca214')
 
-build() {
-  cd ${srcdir}/djblets-djblets-*
-
-  python2 setup.py install --root=${pkgdir}
+package() {
+	cd ${srcdir}/Djblets-$pkgver
+	patch -p1 < ${srcdir}/django16.patch
+	python2 setup.py install --root=${pkgdir} --optimize=1
 }
+
