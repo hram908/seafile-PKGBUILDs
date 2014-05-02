@@ -11,7 +11,6 @@ depends=('ccnet>=1.4.2' 'fuse')
 makedepends=('vala' 'intltool' 'fuse')
 optdepends=()
 options=('!libtool' '!emptydirs')
-#install=seafile-shared.install
 source=("https://github.com/haiwen/seafile/archive/v${pkgver}.tar.gz"
         "0002-Add-autoconfiguration-for-libjansson.patch")
 
